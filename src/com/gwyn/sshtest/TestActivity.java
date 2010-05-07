@@ -30,39 +30,34 @@ public class TestActivity extends Activity {
 		session.connect();
 		return session;
 	}
+	
+	public String runCommand(Session session, String command) throws JSchException,IOException {
+		ChannelExec channel = (ChannelExec) session.openChannel("exec");
+		channel.setCommand(command);
+		channel.connect();
+		Log.v("taggy","***********************" + "***CONNECTED");
+
+		BufferedReader reader;
+		reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
+
+		StringBuilder responseBuilder = new StringBuilder();
+		SystemClock.sleep(1000);
+		while (!channel.isClosed() && !channel.isEOF()) {
+			String line = reader.readLine();
+			if (line != null) {
+				responseBuilder.append(line).append("\n");
+			}
+		}
+		return responseBuilder.toString();
+	}
 		
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		
-
-		
 		try {
 			Session session = setupSession();
-
-			String command = "ls -l /";
-			ChannelExec channel = (ChannelExec) session.openChannel("exec");
-			channel.setCommand(command);
-			channel.connect();
-			Log.v("taggy","***********************" + "***CONNECTED");
-
-
-			BufferedReader reader;
-			reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
-
-			StringBuilder responseBuilder = new StringBuilder();
-			SystemClock.sleep(1000);
-			while (!channel.isClosed() && !channel.isEOF()) {
-				String line = reader.readLine();
-				if (line != null) {
-					responseBuilder.append(line).append("\n");
-				}
-			}
-			Log.v("taggy","********** HERE: " + responseBuilder.toString() + " **************");
-			Log.v("taggy","**************************DONE");
-
+			Log.v("taggy","&&&&&&&&&&&&" + runCommand(session,"ls -l /"));
 		} catch (JSchException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();	
@@ -70,8 +65,5 @@ public class TestActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
-
 	}
 }
