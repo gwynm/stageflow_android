@@ -14,6 +14,23 @@ import java.io.InputStreamReader;
 
 public class TestActivity extends Activity {
 	/** Called when the activity is first created. */
+	public static String SSH_HOST = "192.168.1.67";
+	public static String SSH_USER = "Gwyn Morfey";
+	public static String SSH_PASS = "kitt*()";
+		
+	public Session setupSession() throws JSchException {
+		JSch jsch=new JSch();  
+		Session session = jsch.getSession(SSH_USER,SSH_HOST,22);
+		
+		java.util.Properties config = new java.util.Properties(); 
+		config.put("StrictHostKeyChecking", "no");
+		session.setConfig(config);
+
+		session.setPassword(SSH_PASS);
+		session.connect();
+		return session;
+	}
+		
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,16 +39,8 @@ public class TestActivity extends Activity {
 		
 
 		
-		JSch jsch=new JSch();  
 		try {
-			Session session = jsch.getSession("Gwyn Morfey","192.168.1.67",22);
-			
-			java.util.Properties config = new java.util.Properties(); 
-			config.put("StrictHostKeyChecking", "no");
-			session.setConfig(config);
-
-			session.setPassword("kitt*()");
-			session.connect();
+			Session session = setupSession();
 
 			String command = "ls -l /";
 			ChannelExec channel = (ChannelExec) session.openChannel("exec");
