@@ -51,6 +51,7 @@ public class TestActivity extends Activity {
 
 		session.setPassword(SSH_PASS);
 		session.connect();
+
 		return session;
 	}
 
@@ -63,7 +64,7 @@ public class TestActivity extends Activity {
 		reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
 
 		StringBuilder responseBuilder = new StringBuilder();
-		SystemClock.sleep(3000);
+		SystemClock.sleep(1000);
 		while (!channel.isClosed() && !channel.isEOF()) {
 			String line = reader.readLine();
 			if (line != null) {
@@ -91,11 +92,12 @@ public class TestActivity extends Activity {
 
 		Button nextButton = (Button)findViewById(R.id.next_button);
 		nextButton.setOnClickListener(nextListener);  
-		displayStatus("O Hai");
+		displayStatus("O Hdai");
 		
 		try {
 			session = setupSession();
-			displayStatus(runCommand("ls -l /"));
+			displayStatus(runCommand("/tmp/aaa"));
+			Log.v("taggy","@@@@@@@@@@@@" + runCommand("/tmp/aaa"));
 		} catch (JSchException e1) {
 			// TODO Auto-generated catch block
 			displayStatus("eExplode: " + e1.getMessage());
