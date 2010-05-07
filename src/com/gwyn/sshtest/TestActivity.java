@@ -17,7 +17,8 @@ public class TestActivity extends Activity {
 	public static String SSH_HOST = "192.168.1.67";
 	public static String SSH_USER = "Gwyn Morfey";
 	public static String SSH_PASS = "kitt*()";
-		
+	Session session;	
+	
 	public Session setupSession() throws JSchException {
 		JSch jsch=new JSch();  
 		Session session = jsch.getSession(SSH_USER,SSH_HOST,22);
@@ -31,11 +32,10 @@ public class TestActivity extends Activity {
 		return session;
 	}
 	
-	public String runCommand(Session session, String command) throws JSchException,IOException {
+	public String runCommand(String command) throws JSchException,IOException {
 		ChannelExec channel = (ChannelExec) session.openChannel("exec");
 		channel.setCommand(command);
 		channel.connect();
-		Log.v("taggy","***********************" + "***CONNECTED");
 
 		BufferedReader reader;
 		reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
@@ -50,14 +50,14 @@ public class TestActivity extends Activity {
 		}
 		return responseBuilder.toString();
 	}
-		
+			
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		try {
-			Session session = setupSession();
-			Log.v("taggy","&&&&&&&&&&&&" + runCommand(session,"ls -l /"));
+			session = setupSession();
+			Log.v("taggy","&&&&&&----&&&&&" + runCommand("ls -l /"));
 		} catch (JSchException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();	
