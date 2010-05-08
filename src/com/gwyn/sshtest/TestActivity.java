@@ -96,8 +96,11 @@ public class TestActivity extends Activity {
 		
 		try {
 			session = setupSession();
-			displayStatus(runCommand("/tmp/aaa"));
-			Log.v("taggy","@@@@@@@@@@@@" + runCommand("/tmp/aaa"));
+			
+			//displayStatus(runCommand("/tmp/aaa"));
+			//Log.v("taggy","bbbb@@@s@g@@@f@@@@@" + runCommand("/tmp/aaa"));
+			Log.v("taggy",runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to get the notes of the 3rd slide of the first slideshow' && echo '---END---' && ls -l /"));
+			
 		} catch (JSchException e1) {
 			// TODO Auto-generated catch block
 			displayStatus("eExplode: " + e1.getMessage());
