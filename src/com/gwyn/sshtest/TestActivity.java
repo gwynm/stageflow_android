@@ -39,6 +39,20 @@ public class TestActivity extends Activity {
 		}
 	};
 
+	private OnClickListener prevListener = new OnClickListener() {
+		public void onClick(View v) {
+			try {
+				prevSlide();
+				displayStatus(getCurrentNotes());
+			} catch (JSchException e) {
+				// TODO Auto-generated catch block
+				displayStatus("Explode: " + e.getMessage());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				displayStatus("Explode: " + e.getMessage());
+			}
+		}
+	};
 
 
 	public Session setupSession() throws JSchException {
@@ -64,7 +78,7 @@ public class TestActivity extends Activity {
 		reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
 
 		StringBuilder responseBuilder = new StringBuilder();
-		SystemClock.sleep(1000);
+		SystemClock.sleep(250);
 		while (!channel.isClosed() && !channel.isEOF()) {
 			String line = reader.readLine();
 			if (line != null) {
@@ -91,6 +105,10 @@ public class TestActivity extends Activity {
 		return runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to advance'");
 	}
 
+	public String prevSlide() throws JSchException, IOException  {
+		return runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to show previous'");
+	}
+
 	
 	public void displayStatus(String newstatus) {
 		TextView status = (TextView)findViewById(R.id.status);
@@ -103,7 +121,11 @@ public class TestActivity extends Activity {
 		setContentView(R.layout.main);
 
 		Button nextButton = (Button)findViewById(R.id.next_button);
-		nextButton.setOnClickListener(nextListener);  
+		nextButton.setOnClickListener(nextListener); 
+		
+		Button prevButton = (Button)findViewById(R.id.prev_button);
+		prevButton.setOnClickListener(prevListener);
+		
 		displayStatus("O Hai");
 		
 		try {
