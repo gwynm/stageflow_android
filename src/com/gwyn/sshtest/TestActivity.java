@@ -71,11 +71,23 @@ public class TestActivity extends Activity {
 				responseBuilder.append(line).append("\n");
 			}
 		}
-		return responseBuilder.toString();
+		return trimToEndMarker(responseBuilder.toString());
+	}
+	
+	public String trimToEndMarker(String txt) {
+		int endpos = txt.indexOf("---END---");
+		if (endpos == -1) {
+			return txt;
+		} else {
+			return txt.substring(0, endpos);
+		}
 	}
 
+	public String getCurrentNotes() throws JSchException,IOException {
+		return runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to get the notes of the current slide of the first slideshow' && echo '---END---' && ls -l /");
+	}
+	
 	public String nextSlide() throws JSchException, IOException  {
-		//return runCommand("date > /tmp/nextslide && date");
 		return runCommand("/usr/bin/osascript -e 'tell application " + '"' + "Keynote" + '"' + " to advance");
 	}
 
@@ -92,15 +104,12 @@ public class TestActivity extends Activity {
 
 		Button nextButton = (Button)findViewById(R.id.next_button);
 		nextButton.setOnClickListener(nextListener);  
-		displayStatus("O Hdai");
+		displayStatus("O Hai");
 		
 		try {
 			session = setupSession();
-			
-			//displayStatus(runCommand("/tmp/aaa"));
-			//Log.v("taggy","bbbb@@@s@g@@@f@@@@@" + runCommand("/tmp/aaa"));
-			Log.v("taggy",runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to get the notes of the 3rd slide of the first slideshow' && echo '---END---' && ls -l /"));
-			
+			displayStatus(getCurrentNotes());
+			//displayStatus(runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to get the notes of the 3rd slide of the first slideshow' && echo '---END---' && ls -l /"));
 		} catch (JSchException e1) {
 			// TODO Auto-generated catch block
 			displayStatus("eExplode: " + e1.getMessage());
