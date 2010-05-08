@@ -5,6 +5,6 @@
     android:layout_height="fill_parent"
     >
 
-<Button android:text="Next Slide" android:id="@+id/next_button" android:layout_width="200dp" android:layout_height="200dp" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"></Button>
-<TextView android:id="@+id/status" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@+id/next_button" android:text="Waiting.."></TextView>
+<Button android:text="Next Slide" android:id="@+id/next_button" android:layout_width="200dp" android:layout_height="100dp" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"></Button>
+<TextView android:id="@+id/status" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentTop="true"></TextView>
 </RelativeLayout>

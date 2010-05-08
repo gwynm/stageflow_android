@@ -26,9 +26,9 @@ public class TestActivity extends Activity {
 
 	private OnClickListener nextListener = new OnClickListener() {
 		public void onClick(View v) {
-			Log.v("taggy",">>>>>>>NEXT>>>>>");
 			try {
-				displayStatus(nextSlide());
+				nextSlide();
+				displayStatus(getCurrentNotes());
 			} catch (JSchException e) {
 				// TODO Auto-generated catch block
 				displayStatus("Explode: " + e.getMessage());
@@ -57,7 +57,7 @@ public class TestActivity extends Activity {
 
 	public String runCommand(String command) throws JSchException,IOException {
 		ChannelExec channel = (ChannelExec) session.openChannel("exec");
-		channel.setCommand(command);
+		channel.setCommand(command +  " && echo '---END---' && ls -l /");
 		channel.connect();
 
 		BufferedReader reader;
@@ -84,11 +84,11 @@ public class TestActivity extends Activity {
 	}
 
 	public String getCurrentNotes() throws JSchException,IOException {
-		return runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to get the notes of the current slide of the first slideshow' && echo '---END---' && ls -l /");
+		return runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to get the notes of the current slide of the first slideshow'");
 	}
 	
 	public String nextSlide() throws JSchException, IOException  {
-		return runCommand("/usr/bin/osascript -e 'tell application " + '"' + "Keynote" + '"' + " to advance");
+		return runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to advance'");
 	}
 
 	
@@ -109,7 +109,6 @@ public class TestActivity extends Activity {
 		try {
 			session = setupSession();
 			displayStatus(getCurrentNotes());
-			//displayStatus(runCommand("/usr/bin/osascript -e 'tell application \"Keynote\" to get the notes of the 3rd slide of the first slideshow' && echo '---END---' && ls -l /"));
 		} catch (JSchException e1) {
 			// TODO Auto-generated catch block
 			displayStatus("eExplode: " + e1.getMessage());
