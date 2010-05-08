@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+
+<TextView  android:id="@+id/host_label" android:text="Host" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+<EditText  android:id="@+id/host_text" android:text="192.168.1." android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+
+<TextView  android:id="@+id/user_label" android:text="User" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+<EditText  android:id="@+id/user_text" android:text="Gwyn Morfey" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+
+<TextView  android:id="@+id/pass_label" android:text="Pass" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+<EditText  android:id="@+id/pass_text" android:text="kitt" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+
+
+<Button android:text="Connect" android:id="@+id/connect_button"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+			
+</LinearLayout>
