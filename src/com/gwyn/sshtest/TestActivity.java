@@ -3,6 +3,7 @@ package com.gwyn.sshtest;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -127,6 +128,8 @@ public class TestActivity extends Activity {
 		prevButton.setOnClickListener(prevListener);
 		
 		displayStatus("O Hai");
+		
+	
 		
 		try {
 			session = setupSession();
