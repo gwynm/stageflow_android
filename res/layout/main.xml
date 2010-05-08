@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-    
-    
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              >
-
-<TextView android:id="@+id/status" android:textSize="22dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:scrollbars="vertical" ></TextView>
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
 
 
+	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_weight="80" android:layout_width="fill_parent"
+		android:layout_height="wrap_content">
+
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+
+			<TextView android:id="@+id/status" android:textSize="22dp"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:scrollbars="vertical"></TextView>
+
+		</LinearLayout>
+	</ScrollView>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="horizontal" android:layout_weight="20" android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+		<Button android:text="Prev Slide" android:id="@+id/prev_button"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_weight="50"></Button>
+		<Button android:text="Next Slide" android:id="@+id/next_button"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_weight="50"></Button>
+	</LinearLayout>
 </LinearLayout>
-</ScrollView>    
-    
-
-<Button android:text="Prev Slide" android:id="@+id/prev_button" android:layout_width="140dp" android:layout_height="100dp" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"></Button>
-<Button android:text="Next Slide" android:id="@+id/next_button" android:layout_width="140dp" android:layout_height="100dp" android:layout_alignParentBottom="true" android:layout_alignParentRight="true"></Button>
-
-
-</RelativeLayout>
