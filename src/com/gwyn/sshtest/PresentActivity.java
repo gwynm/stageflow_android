@@ -27,10 +27,10 @@ public class PresentActivity extends Activity {
 				displayStatus(getCurrentNotes());
 			} catch (JSchException e) {
 				// TODO Auto-generated catch block
-				displayStatus("Explode: " + e.getMessage());
+				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				displayStatus("Explode: " + e.getMessage());
+				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
 			}
 		}
 	};
@@ -41,10 +41,10 @@ public class PresentActivity extends Activity {
 				displayStatus(getCurrentNotes());
 			} catch (JSchException e) {
 				// TODO Auto-generated catch block
-				displayStatus("Explode: " + e.getMessage());
+				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				displayStatus("Explode: " + e.getMessage());
+				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
 			}
 		}
 	};
@@ -55,10 +55,10 @@ public class PresentActivity extends Activity {
 				displayStatus(getCurrentNotes());
 			} catch (JSchException e) {
 				// TODO Auto-generated catch block
-				displayStatus("Explode: " + e.getMessage());
+				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				displayStatus("Explode: " + e.getMessage());
+				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
 			}
 		}
 	};
@@ -151,10 +151,10 @@ public class PresentActivity extends Activity {
 			displayStatus(getCurrentNotes());
 		} catch (JSchException e1) {
 			// TODO Auto-generated catch block
-			displayStatus("eExplode: " + e1.getMessage());
+			displayStatus("Error: " + e1.getMessage() + ". Suggest you click 'Back' and reconnect.");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			displayStatus("eExplode: " + e.getMessage());
+			displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
 		}
 	}
 }
