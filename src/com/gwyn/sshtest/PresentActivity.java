@@ -35,6 +35,19 @@ public class PresentActivity extends Activity {
 		}
 	};
 
+	private OnClickListener reloadListener = new OnClickListener() {
+		public void onClick(View v) {
+			try {
+				displayStatus(getCurrentNotes());
+			} catch (JSchException e) {
+				// TODO Auto-generated catch block
+				displayStatus("Explode: " + e.getMessage());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				displayStatus("Explode: " + e.getMessage());
+			}
+		}
+	};
 	private OnClickListener prevListener = new OnClickListener() {
 		public void onClick(View v) {
 			try {
@@ -127,8 +140,11 @@ public class PresentActivity extends Activity {
 		
 		Button prevButton = (Button)findViewById(R.id.prev_button);
 		prevButton.setOnClickListener(prevListener);
+
+		Button reloadButton = (Button)findViewById(R.id.reload_button);
+		reloadButton.setOnClickListener(reloadListener);		
 		
-		displayStatus("O Hai");
+		displayStatus("Here we go");
 		
 		try {
 			session = setupSession(host,user,pass);

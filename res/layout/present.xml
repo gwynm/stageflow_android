@@ -25,6 +25,9 @@
 		<Button android:text="Prev Slide" android:id="@+id/prev_button"
 			android:layout_width="wrap_content" android:layout_height="50dp"
 			android:layout_weight="50"></Button>
+		<Button android:text="Reload" android:id="@+id/reload_button"
+			android:layout_width="wrap_content" android:layout_height="50dp"
+			android:layout_weight="50"></Button>
 		<Button android:text="Next Slide" android:id="@+id/next_button"
 			android:layout_width="wrap_content" android:layout_height="50dp"
 			android:layout_weight="50"></Button>
