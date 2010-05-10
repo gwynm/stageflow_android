@@ -1,8 +1,9 @@
-package com.gwyn.sshtest;
+package com.gwyn.stageflow;
 
 import java.io.IOException;
 import java.util.Date;
 
+import com.gwyn.stageflow.R;
 import com.jcraft.jsch.JSchException;
 
 import android.app.Activity;

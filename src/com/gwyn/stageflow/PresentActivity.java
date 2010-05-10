@@ -1,4 +1,4 @@
-package com.gwyn.sshtest;
+package com.gwyn.stageflow;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.gwyn.stageflow.R;
 import com.jcraft.jsch.*;
 
 import java.io.BufferedReader;
