@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 public class ConnectActivity extends Activity {
 	public static String PREFS_NAME="StageFlowPrefs";
-	public static String HELP_TEXT="StageFlow uses your Mac's built-in Remote Login feature to access Keynote. Open System Preferences, select Sharing, and then tick 'Remote Login' (not 'Remote Management') about halfway down. To get the host address, go back to System Preferences, select Network, and look for text like 'and has the IP address 192.168.1.66'. Enter '192.168.1.66'. The 'User Name' is whatever you use to login to your computer normally - probably your full name. The 'Password' is your normal login password. Press your phone's 'back' button to go back to the connection screen. Need more help? Email mail@gwynmorfey.com. ";
+	public static String HELP_TEXT="StageFlow uses your Mac's built-in Remote Login feature to access Keynote. \n\n Open System Preferences, select Sharing, and then tick 'Remote Login' (not 'Remote Management') about halfway down. \n\n To get the host address, go back to System Preferences, select Network, and look for text like 'and has the IP address 192.168.1.66'. Enter '192.168.1.66'. \n\n The 'User Name' is whatever you use to login to your computer normally - probably your full name. \n\n The 'Password' is your normal login password. \n\n Press your phone's 'back' button to go back to the connection screen. \n\n Need more help? Email mail@gwynmorfey.com. \n\n (Cheers to hiddedevries for the icon photo: http://www.flickr.com/photos/hiddedevries/599606659/)";
 	
 	private OnClickListener helpListener = new OnClickListener() {
 		public void onClick(View v) {
