@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.gwyn.stageflow.R;
 import com.jcraft.jsch.*;
+import com.nullwire.trace.ExceptionHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,6 +30,9 @@ public class PresentActivity extends Activity {
 			} catch (JSchException e) {
 				// TODO Auto-generated catch block
 				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
+			} catch (NullPointerException e) {
+				// TODO Auto-generated catch block
+				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
@@ -36,25 +40,15 @@ public class PresentActivity extends Activity {
 		}
 	};
 
-	private OnClickListener reloadListener = new OnClickListener() {
-		public void onClick(View v) {
-			try {
-				displayStatus(getCurrentNotes());
-			} catch (JSchException e) {
-				// TODO Auto-generated catch block
-				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
-			}
-		}
-	};
 	private OnClickListener prevListener = new OnClickListener() {
 		public void onClick(View v) {
 			try {
 				prevSlide();
 				displayStatus(getCurrentNotes());
 			} catch (JSchException e) {
+				// TODO Auto-generated catch block
+				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
+			} catch (NullPointerException e) {
 				// TODO Auto-generated catch block
 				displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
 			} catch (IOException e) {
@@ -127,6 +121,7 @@ public class PresentActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		ExceptionHandler.register(this);
 		super.onCreate(savedInstanceState);
 		
 		Bundle bundle = getIntent().getExtras();
@@ -141,9 +136,6 @@ public class PresentActivity extends Activity {
 		
 		Button prevButton = (Button)findViewById(R.id.prev_button);
 		prevButton.setOnClickListener(prevListener);
-
-		Button reloadButton = (Button)findViewById(R.id.reload_button);
-		reloadButton.setOnClickListener(reloadListener);		
 		
 		displayStatus("Here we go");
 		
@@ -152,10 +144,13 @@ public class PresentActivity extends Activity {
 			displayStatus(getCurrentNotes());
 		} catch (JSchException e1) {
 			// TODO Auto-generated catch block
-			displayStatus("Error: " + e1.getMessage() + ". Suggest you click 'Back' and reconnect.");
+			displayStatus("Error: " + e1.getMessage() + " on initial load. Suggest you click 'Back' and reconnect.");
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			displayStatus("Error: " + e.getMessage() + " on initial load. Suggest you click 'Back' and reconnect.");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			displayStatus("Error: " + e.getMessage() + ". Suggest you click 'Back' and reconnect.");
+			displayStatus("Error: " + e.getMessage() + " on initial load. Suggest you click 'Back' and reconnect.");
 		}
 	}
 }

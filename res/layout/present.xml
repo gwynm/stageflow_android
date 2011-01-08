@@ -12,7 +12,8 @@
 			android:orientation="vertical" android:layout_width="fill_parent"
 			android:layout_height="wrap_content">
 
-			<TextView android:id="@+id/status" android:textSize="22dp"
+			<TextView android:id="@+id/status" android:textSize="22dp" android:textColor="#000000"
+			 android:background="#FFFFFF" android:typeface="serif"
 				android:layout_width="fill_parent" android:layout_height="wrap_content"
 				android:scrollbars="vertical"></TextView>
 
@@ -22,14 +23,12 @@
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		android:orientation="horizontal" android:layout_weight="0" android:layout_width="fill_parent" android:layout_height="wrap_content">
 
-		<Button android:text="Prev Slide" android:id="@+id/prev_button"
-			android:layout_width="wrap_content" android:layout_height="50dp"
-			android:layout_weight="50"></Button>
-		<Button android:text="Reload" android:id="@+id/reload_button"
-			android:layout_width="wrap_content" android:layout_height="50dp"
-			android:layout_weight="50"></Button>
-		<Button android:text="Next Slide" android:id="@+id/next_button"
-			android:layout_width="wrap_content" android:layout_height="50dp"
+		<Button android:text="&lt;" android:id="@+id/prev_button"
+			android:layout_width="wrap_content" android:layout_height="80dp"
+			android:layout_weight="50"
+			></Button>
+		<Button android:text="&gt;" android:id="@+id/next_button"
+			android:layout_width="wrap_content" android:layout_height="80dp"
 			android:layout_weight="50"></Button>
 	</LinearLayout>
 </LinearLayout>
