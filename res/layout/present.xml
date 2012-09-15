@@ -5,7 +5,7 @@
 
 
 	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_weight="80" android:layout_width="fill_parent"
+		android:layout_weight="80" android:layout_width="fill_parent" android:background="#FFFFFF" 
 		android:layout_height="wrap_content">
 
 		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,22 +13,22 @@
 			android:layout_height="wrap_content">
 
 			<TextView android:id="@+id/status" android:textSize="22dp" android:textColor="#000000"
-			 android:background="#FFFFFF" android:typeface="serif"
-				android:layout_width="fill_parent" android:layout_height="wrap_content"
+			 android:typeface="serif"
+				android:layout_width="fill_parent" android:layout_height="wrap_content" android:padding="5dp"
 				android:scrollbars="vertical"></TextView>
 
 		</LinearLayout>
 	</ScrollView>
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:orientation="horizontal" android:layout_weight="0" android:layout_width="fill_parent" android:layout_height="wrap_content">
+		android:orientation="horizontal"  android:background="#333333"  android:padding="5dp" android:layout_weight="0" android:layout_width="fill_parent" android:layout_height="wrap_content">
 
 		<Button android:text="&lt;" android:id="@+id/prev_button"
-			android:layout_width="wrap_content" android:layout_height="80dp"
-			android:layout_weight="50"
+			android:layout_width="wrap_content" android:layout_height="80dp" android:textStyle="bold" android:textColor="#009900"
+			android:layout_weight="50" android:textSize="40dp"
 			></Button>
 		<Button android:text="&gt;" android:id="@+id/next_button"
-			android:layout_width="wrap_content" android:layout_height="80dp"
+			android:layout_width="wrap_content" android:layout_height="80dp" android:textSize="40dp" android:textStyle="bold" android:textColor="#009900"
 			android:layout_weight="50"></Button>
 	</LinearLayout>
 </LinearLayout>

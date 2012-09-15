@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	android:layout_height="fill_parent" android:padding="5dp">
 
 
-<TextView  android:id="@+id/host_label" android:text="SSH Host" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+<TextView  android:id="@+id/host_label" android:text="Your mac's IP address" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 <EditText  android:id="@+id/host_text" android:text="" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 
-<TextView  android:id="@+id/user_label" android:text="User" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+<TextView  android:id="@+id/user_label" android:text="Your login name" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 <EditText  android:id="@+id/user_text" android:text="" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 
-<TextView  android:id="@+id/pass_label" android:text="Pass" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
+<TextView  android:id="@+id/pass_label" android:text="Your login password" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 <EditText  android:id="@+id/pass_text" android:text="" android:password="true" android:layout_width="fill_parent" android:layout_height="wrap_content"/>
 
 
@@ -19,11 +19,9 @@
 			android:layout_width="wrap_content" android:layout_height="wrap_content"  android:layout_weight="20"></Button>
 			
 
-<Button android:text="Connect" android:id="@+id/connect_button"
+<Button android:text="Start Presenting!" android:id="@+id/connect_button" android:textColor="#009900" android:textStyle="bold"
 			android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="80"></Button>
-
-		
-		
 		</LinearLayout>
+
 			
 </LinearLayout>

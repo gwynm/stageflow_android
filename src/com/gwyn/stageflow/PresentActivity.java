@@ -1,8 +1,10 @@
 package com.gwyn.stageflow;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -18,7 +20,8 @@ import java.io.InputStreamReader;
 
 
 public class PresentActivity extends Activity {
-	/** Called when the activity is first created. */
+	public static String PREFS_NAME="StageFlowPrefs";
+
 
 	Session session;	
 
@@ -75,25 +78,28 @@ public class PresentActivity extends Activity {
 
 	public String runCommand(String command) throws JSchException,IOException {
 		ChannelExec channel = (ChannelExec) session.openChannel("exec");
-		channel.setCommand(command +  " && echo '---END---' && ls -l /");
+		channel.setCommand(command);
 		channel.connect();
 
 		BufferedReader reader;
 		reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
 
 		StringBuilder responseBuilder = new StringBuilder();
-		SystemClock.sleep(250);
-		while (!channel.isClosed() && !channel.isEOF()) {
+		
+		while (!channel.isEOF()) {
 			String line = reader.readLine();
+//			Log.v("gwyn","Got " + line);
 			if (line != null) {
 				responseBuilder.append(line).append("\n");
+			} else {
+				SystemClock.sleep(50);
 			}
 		}
-		return trimToEndMarker(responseBuilder.toString());
+		return responseBuilder.toString();
 	}
 	
 	public String trimToEndMarker(String txt) {
-		int endpos = txt.indexOf("---END---");
+		int endpos = txt.indexOf("ZSFZ");
 		if (endpos == -1) {
 			return txt;
 		} else {
@@ -142,15 +148,23 @@ public class PresentActivity extends Activity {
 		try {
 			session = setupSession(host,user,pass);
 			displayStatus(getCurrentNotes());
-		} catch (JSchException e1) {
+			recordSuccessfulConnection();
+		} catch (JSchException e) {
 			// TODO Auto-generated catch block
-			displayStatus("Error: " + e1.getMessage() + " on initial load. Suggest you click 'Back' and reconnect.");
+			displayStatus("Couldn't connect to your Mac! (Error: " + e.getMessage() + ") Press 'back' to try again.");
 		} catch (NullPointerException e) {
 			// TODO Auto-generated catch block
-			displayStatus("Error: " + e.getMessage() + " on initial load. Suggest you click 'Back' and reconnect.");
+			displayStatus("Couldn't connect to your Mac! (Error: " + e.getMessage() + ") Press 'back' to try again.");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			displayStatus("Error: " + e.getMessage() + " on initial load. Suggest you click 'Back' and reconnect.");
+			displayStatus("Couldn't connect to your Mac! (Error: " + e.getMessage() + ") Press 'back' to try again.");
 		}
+	}
+	
+	private void recordSuccessfulConnection() {
+    	SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+    	SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("has_ever_connected", true);
+        editor.commit();	
 	}
 }

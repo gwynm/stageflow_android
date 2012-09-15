@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, TestActivity!</string>
     <string name="app_name">StageFlow</string>
+
 </resources>
